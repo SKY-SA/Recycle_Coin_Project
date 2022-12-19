@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    internal class EfWalletDal : EfEntityReposioryBase<Wallet, Context>, IWalletDal
+    public class EfWalletDal : EfEntityReposioryBase<Wallet, Context>, IWalletDal
     {
     }
 }
