@@ -18,5 +18,7 @@ namespace Business.Constants
         public static string UserNotFound = "User Not Found !";
 
         public static string UserRegistered = "User has registered Successfully";
+
+        public static string WalletCreatingError = "Wallet has can not created !";
     }
 }
