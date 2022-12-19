@@ -5,10 +5,12 @@ using DataAccess.Concrete.EntityFramework;
 using Entities.DTOs;
 using System.Text;
 
+Console.WriteLine("Program has starting ...");
 
-UserManager userManager = new UserManager(new EfUserDal());
+var walletManager = new WalletManager(new EfWalletDal());
+UserManager userManager = new UserManager(new EfUserDal(), walletManager);
 
-var authManager = new AuthManager(userManager);
+var authManager = new AuthManager(userManager, walletManager);
 
 TestUserAdd(authManager);
 
@@ -28,16 +30,16 @@ static void TestUserAdd(AuthManager authManager)
         Console.WriteLine(result.Message);
 }
 
-//TestGetUserByEmail(authManager);
+////TestGetUserByEmail(authManager);
 
-static void TestGetUserByEmail(AuthManager authManager)
-{
-    var result = authManager.UserExists("onthsky@gmail.com");
-    if (result.Success)
-        Console.WriteLine("İşlem başarılı");
-    else
-        Console.WriteLine(result.Message);
-}
+//static void TestGetUserByEmail(AuthManager authManager)
+//{
+//    var result = authManager.UserExists("onthsky@gmail.com");
+//    if (result.Success)
+//        Console.WriteLine("İşlem başarılı");
+//    else
+//        Console.WriteLine(result.Message);
+//}
 
 
 
