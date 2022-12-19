@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Concrete
+namespace Entities.DTOs
 {
-    public class Product : IEntity
+    public class UserForLoginDto : IDto
     {
-        public int ProductId { get; set; }
-        public int CategoryId { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 }
