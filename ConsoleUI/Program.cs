@@ -9,18 +9,28 @@ Console.WriteLine("Program has starting ...");
 
 var walletManager = new WalletManager(new EfWalletDal());
 UserManager userManager = new UserManager(new EfUserDal(), walletManager);
-
 var authManager = new AuthManager(userManager, walletManager);
 
-TestUserAdd(authManager);
+//TestDisplayUserBalance(userManager);
+var senderUser = userManager.GetByMail("onthsky@gmail.com");
+var receiverUser = userManager.GetByMail("dila@gmail.com");
+var result = userManager.SendBalance(senderUser.UserAddress, receiverUser.UserAddress, 1000);
+if (!result.Success)
+    Console.WriteLine(result.Message);
+else
+    Console.WriteLine("Processing has done Successfully");
 
+
+
+
+// Local Method
 static void TestUserAdd(AuthManager authManager)
 {
     var userForRegister = new UserForRegisterDto
     {
-        FirstName = "Kemal",
+        FirstName = "Dila",
         LastName = "Yoğurt",
-        Email = "onthsky@gmail.com",
+        Email = "dila@gmail.com",
         Password = "123456"
     };
     var result = authManager.Register(userForRegister, "123456");
@@ -29,6 +39,19 @@ static void TestUserAdd(AuthManager authManager)
     else
         Console.WriteLine(result.Message);
 }
+
+//static void TestDisplayUserBalance(UserManager userManager)
+//{
+//    var user = userManager.GetByMail("onthsky@gmail.com");
+//    if (user != null)
+//    {
+//        var result = userManager.DisplayBalance(user.UserAddress);
+//        if (result.Success)
+//        {
+//            Console.WriteLine($"Balance: {result.Data.Balance}");
+//        }
+//    }
+//////}
 
 ////TestGetUserByEmail(authManager);
 
