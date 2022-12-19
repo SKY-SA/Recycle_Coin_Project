@@ -20,5 +20,9 @@ namespace Business.Constants
         public static string UserRegistered = "User has registered Successfully";
 
         public static string WalletCreatingError = "Wallet has can not created !";
+
+        public static string WalletNotFound = "Wallet Not Found !";
+
+        public static string InsufficientBalance = "You do not have enough money";
     }
 }
