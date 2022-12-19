@@ -16,10 +16,11 @@ namespace Business.Concrete
     public class AuthManager : IAuthService
     {
         private IUserService _userService;
-
-        public AuthManager(IUserService userService)
+        private IWalletService _walletService;
+        public AuthManager(IUserService userService, IWalletService walletService)
         {
             _userService = userService;
+            _walletService = walletService;     
         }
 
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
@@ -27,6 +28,7 @@ namespace Business.Concrete
             byte[] passwordHash, passwordSalt;
             var userAddress = HashingHelper.CreateUserAddress(userForRegisterDto.FirstName, userForRegisterDto.LastName, userForRegisterDto.Email);
             HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
+           
             var user = new User
             {
                 UserAddress = userAddress,
@@ -38,6 +40,18 @@ namespace Business.Concrete
                 Status = true
             };
             _userService.Add(user);
+
+            var result = _walletService.GetByUserAddress(userAddress);
+            if (result == null)
+            {
+                var result2 = _walletService.Add(new Wallet
+                {
+                    UserAddress = userAddress,
+                    Balance = 0
+                });
+                if (!result2.Success)
+                    return new ErrorDataResult<User>(Messages.WalletCreatingError);
+            }
             return new SuccessDataResult<User>(user, Messages.UserRegistered);
         }
 
