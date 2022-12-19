@@ -10,5 +10,9 @@ namespace Business.Abstract
 
         IResult Add(Wallet wallet);
         IResult Update(Wallet wallet);
+
+        IResult BalanceAdd(string userAddress,int amount);
+        IResult BalanceReduction(string userAddress, int amount);
     }
 }
+ 

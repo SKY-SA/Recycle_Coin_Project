@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -22,6 +23,29 @@ namespace Business.Concrete
         public IResult Add(Wallet wallet)
         {
             _walletDal.Add(wallet);
+            return new SuccessResult();
+        }
+
+        public IResult BalanceAdd(string userAddress, int amount)
+        {
+            var wallet = this.GetByUserAddress(userAddress);
+            if (wallet == null)
+                return new ErrorResult(Messages.WalletNotFound);
+            wallet.Balance += amount;
+            this.Update(wallet);
+            return new SuccessResult();
+        }
+
+        public IResult BalanceReduction(string userAddress, int amount)
+        {
+            var wallet = this.GetByUserAddress(userAddress);
+            if (wallet == null)
+                return new ErrorResult(Messages.WalletNotFound);
+            if (wallet.Balance < amount)
+                return new ErrorResult(Messages.InsufficientBalance);
+
+            wallet.Balance -= amount;
+            this.Update(wallet);
             return new SuccessResult();
         }
 
