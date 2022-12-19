@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Core.Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Core.Utilities.Security.Hashing
 {
@@ -17,7 +19,7 @@ namespace Core.Utilities.Security.Hashing
                 passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
             }
         }
-        public static bool VerifyPassword(string password, byte[] passwordHash, byte[] passwordSalt)
+        public static bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA256(passwordSalt)) 
             {
@@ -30,19 +32,19 @@ namespace Core.Utilities.Security.Hashing
                 return true;
             }
         }
-        public static string CreateUserId(string userName)
+        public static string CreateUserAddress(string firstName, string lastName, string email)
         {
-            using (var hmac = new System.Security.Cryptography.HMACSHA256())
+            string key = $"{firstName}/{lastName}+:-{email}";
+            byte[] bytes = Encoding.UTF8.GetBytes(key);
+            using (var hashstring = new SHA256Managed())
             {
-                var key = hmac.Key;
-                var userId = hmac.ComputeHash(Encoding.UTF8.GetBytes(userName));
-
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < userId.Length; i++)
+                byte[] hash = hashstring.ComputeHash(bytes);
+                string hashString = string.Empty;
+                foreach (byte x in hash)
                 {
-                    builder.Append(userId[i].ToString("x2"));
+                    hashString += String.Format("{0:x2}", x);
                 }
-                return builder.ToString();
+                return hashString;
             }
         }
     }
