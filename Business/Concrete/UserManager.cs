@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using Core.Utilities.Security.Hashing;
@@ -24,15 +25,37 @@ namespace Business.Concrete
 
         public IResult AddBalance(string userAddress, int amount)
         {
-            var walletToUpdate = _walletService.GetByUserAddress(userAddress);
-            walletToUpdate.Balance += amount;
-            _walletService.Update(walletToUpdate);
+            //var walletToUpdate = _walletService.GetByUserAddress(userAddress);
+            //walletToUpdate.Balance += amount;
+            //_walletService.Update(walletToUpdate);
+            _walletService.BalanceAdd(userAddress, amount);
             return new SuccessResult();
+        }
+
+        public IDataResult<Wallet> DisplayBalance(string userAddress)
+        {
+            var result = _walletService.GetByUserAddress(userAddress);
+            if (result == null)
+                return new ErrorDataResult<Wallet>(Messages.WalletNotFound);
+            return new SuccessDataResult<Wallet>(result);
         }
 
         public User GetByMail(string email)
         {
             return _userDal.Get(u => u.Email == email);
         }
+
+        public IResult SendBalance(string senderUserAddress, string receiverUserAddress, int amount)
+        {
+            var result = _walletService.BalanceReduction(senderUserAddress, amount);
+            if (result.Success)
+            {
+                _walletService.BalanceAdd(receiverUserAddress, amount);
+                return new SuccessResult();
+            }
+            return new ErrorResult(result.Message);
+                
+        }
+
     }
 }
