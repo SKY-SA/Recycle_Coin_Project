@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace Entities.DTOs
 {
-    public class CategoryDetailsDto : IDto
+    public class ProductDetailsDto : IDto
     {
-        public int CategoryId { get; set; }
-        public string CategoryName { get; set; }
+        public int ProductId { get; set; }
         public int Score { get; set; }
     }
 }
