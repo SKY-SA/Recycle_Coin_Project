@@ -7,38 +7,35 @@ using System.Text;
 
 Console.WriteLine("Program has starting ...");
 
+var productManager = new ProductManager(new EfProductDal());
 var walletManager = new WalletManager(new EfWalletDal());
 UserManager userManager = new UserManager(new EfUserDal(), walletManager);
 var authManager = new AuthManager(userManager, walletManager);
+var cartManager = new CartManager(new EfCartDal(), walletManager, productManager);
 
-//TestDisplayUserBalance(userManager);
-var senderUser = userManager.GetByMail("onthsky@gmail.com");
-var receiverUser = userManager.GetByMail("dila@gmail.com");
-var result = userManager.SendBalance(senderUser.UserAddress, receiverUser.UserAddress, 1000);
-if (!result.Success)
-    Console.WriteLine(result.Message);
-else
-    Console.WriteLine("Processing has done Successfully");
+var user = userManager.GetByMail("onthsky@gmail.com");
+if (user == null)
+    Console.WriteLine("Kullanıcı bulunamadı");
 
 
-
+cartManager.DoRecycle(1, 1, user.UserAddress);
 
 // Local Method
-static void TestUserAdd(AuthManager authManager)
-{
-    var userForRegister = new UserForRegisterDto
-    {
-        FirstName = "Dila",
-        LastName = "Yoğurt",
-        Email = "dila@gmail.com",
-        Password = "123456"
-    };
-    var result = authManager.Register(userForRegister, "123456");
-    if (result.Success)
-        Console.WriteLine(result.Message);
-    else
-        Console.WriteLine(result.Message);
-}
+//static void TestUserAdd(AuthManager authManager)
+//{
+//    var userForRegister = new UserForRegisterDto
+//    {
+//        FirstName = "Dila",
+//        LastName = "Yoğurt",
+//        Email = "dila@gmail.com",
+//        Password = "123456"
+//    };
+//    var result = authManager.Register(userForRegister, "123456");
+//    if (result.Success)
+//        Console.WriteLine(result.Message);
+//    else
+//        Console.WriteLine(result.Message);
+//}
 
 //static void TestDisplayUserBalance(UserManager userManager)
 //{
@@ -50,10 +47,8 @@ static void TestUserAdd(AuthManager authManager)
 //        {
 //            Console.WriteLine($"Balance: {result.Data.Balance}");
 //        }
-//    }
-//////}
-
-////TestGetUserByEmail(authManager);
+//    }   
+//}
 
 //static void TestGetUserByEmail(AuthManager authManager)
 //{
@@ -64,7 +59,16 @@ static void TestUserAdd(AuthManager authManager)
 //        Console.WriteLine(result.Message);
 //}
 
-
+//static void TestSendBalance(UserManager userManager)
+//{
+//    var senderUser = userManager.GetByMail("onthsky@gmail.com");
+//    var receiverUser = userManager.GetByMail("dila@gmail.com");
+//    var result = userManager.SendBalance(senderUser.UserAddress, receiverUser.UserAddress, 1000);
+//    if (!result.Success)
+//        Console.WriteLine(result.Message);
+//    else
+//        Console.WriteLine("Processing has done Successfully");
+//}
 
 
 
