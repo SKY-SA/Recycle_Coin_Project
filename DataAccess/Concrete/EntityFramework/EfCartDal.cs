@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCategoryRecycleScoreDal : EfEntityReposioryBase<CategoryRecycleScore, Context>, ICategoryRecycleScoreDal
+    public class EfCartDal : EfEntityReposioryBase<Cart, Context>, ICartDal
     {
     }
 }
