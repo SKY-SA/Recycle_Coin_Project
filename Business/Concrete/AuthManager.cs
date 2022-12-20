@@ -71,7 +71,7 @@ namespace Business.Concrete
             return new SuccessDataResult<User>(userToCheck, Messages.SuccessfulLogin);
         }
 
-        public IResult UserExists(string email)
+        public IResult UserExistsWithEmail(string email)
         {
             if (_userService.GetByMail(email) != null)
             {
@@ -80,6 +80,13 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        public IResult UserExistWithUserAddress(string userAddress)
+        {
+            var result = _userService.GetByUserAddress(userAddress);
+            if (!result.Success)
+                return new ErrorResult(result.Message);
+            return new SuccessResult();
+        }
         //public IDataResult<AccessToken> CreateAccessToken(User user)
         //{
         //    var claims = _userService.GetClaims(user);

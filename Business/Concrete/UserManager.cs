@@ -45,6 +45,13 @@ namespace Business.Concrete
             return _userDal.Get(u => u.Email == email);
         }
 
+        public IResult GetByUserAddress(string userAddress)
+        {
+            var result = _userDal.Get(u=> u.UserAddress == userAddress);
+            if (result == null)
+                return new ErrorResult(Messages.UserNotFound);
+            return new SuccessResult();
+        }
         public IResult SendBalance(string senderUserAddress, string receiverUserAddress, int amount)
         {
             var result = _walletService.BalanceReduction(senderUserAddress, amount);

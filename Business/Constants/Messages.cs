@@ -1,4 +1,5 @@
 ﻿using Core.Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,5 +25,11 @@ namespace Business.Constants
         public static string WalletNotFound = "Wallet Not Found !";
 
         public static string InsufficientBalance = "You do not have enough money";
+
+        public static string ProductFound = "Product has found Successfully";
+
+        public static string ProductNotFound = "Product Not Found";
+
+        public static string RecycleIsSuccess = "Recycle has done successfully";
     }
 }

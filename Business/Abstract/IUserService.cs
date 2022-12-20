@@ -14,6 +14,7 @@ namespace Business.Abstract
         void Add(User user);
         User GetByMail(string email);
 
+        IResult GetByUserAddress(string userAddress);
         IResult AddBalance(string userAddress, int amount);
         IDataResult<Wallet> DisplayBalance(string userAddress);
         IResult SendBalance(string senderUserAddress,string receiverUserAddress, int amount);
