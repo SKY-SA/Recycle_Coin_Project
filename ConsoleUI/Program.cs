@@ -18,7 +18,7 @@ if (user == null)
     Console.WriteLine("Kullanıcı bulunamadı");
 
 
-cartManager.DoRecycle(1, 1, user.UserAddress);
+cartManager.DoRecycle(1, 5, user.UserAddress);
 
 // Local Method
 //static void TestUserAdd(AuthManager authManager)

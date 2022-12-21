@@ -13,6 +13,6 @@ namespace Entities.DTOs
         public string UserAddress { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
-        public int Balance { get; set; }
+        public double Balance { get; set; }
     }
 }

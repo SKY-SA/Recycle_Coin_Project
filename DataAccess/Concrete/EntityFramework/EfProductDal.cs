@@ -23,7 +23,7 @@ namespace DataAccess.Concrete.EntityFramework
                              select new ProductDetailsDto
                              {
                                  ProductId= productId,
-                                 Score = s.Score
+                                 Score = Convert.ToSingle(s.Score)
                              };
                 return result.SingleOrDefault();
                              

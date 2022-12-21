@@ -9,6 +9,6 @@ namespace Business.Abstract
 {
     public interface ICartService
     {
-        IResult DoRecycle(int productId, int quantity, string userAddress);
+        IResult DoRecycle(int productId, double quantity, string userAddress);
     }
 }

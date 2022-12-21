@@ -26,7 +26,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IResult BalanceAdd(string userAddress, int amount)
+        public IResult BalanceAdd(string userAddress, double amount)
         {
             var wallet = this.GetByUserAddress(userAddress);
             if (wallet == null)
@@ -36,7 +36,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IResult BalanceReduction(string userAddress, int amount)
+        public IResult BalanceReduction(string userAddress, double amount)
         {
             var wallet = this.GetByUserAddress(userAddress);
             if (wallet == null)

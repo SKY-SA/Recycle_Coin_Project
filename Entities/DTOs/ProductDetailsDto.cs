@@ -10,6 +10,6 @@ namespace Entities.DTOs
     public class ProductDetailsDto : IDto
     {
         public int ProductId { get; set; }
-        public int Score { get; set; }
+        public double Score { get; set; }
     }
 }

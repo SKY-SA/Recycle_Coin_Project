@@ -24,12 +24,12 @@ namespace Business.Concrete
             _productService = productService;
 
         }
-        public IResult DoRecycle(int productId, int quantity, string userAddress)
+        public IResult DoRecycle(int productId, double quantity, string userAddress)
         {
             var productToRecycle = _productService.GetProductDetails(productId);
             if (!productToRecycle.Success)
                 return new ErrorResult(productToRecycle.Message);
-            var totalBalanceToAdd = 0;
+            var totalBalanceToAdd = 0D;
             totalBalanceToAdd = productToRecycle.Data.Score * quantity;
             var result = _walletService.BalanceAdd(userAddress, totalBalanceToAdd);
             if (!result.Success)

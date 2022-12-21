@@ -11,6 +11,6 @@ namespace Entities.DTOs
     {
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
-        public int Score { get; set; }
+        public double Score { get; set; }
     }
 }
