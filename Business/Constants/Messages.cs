@@ -31,5 +31,7 @@ namespace Business.Constants
         public static string ProductNotFound = "Product Not Found";
 
         public static string RecycleIsSuccess = "Recycle has done successfully";
+
+        public static string ListingDone = "Listing has done successfully";
     }
 }
