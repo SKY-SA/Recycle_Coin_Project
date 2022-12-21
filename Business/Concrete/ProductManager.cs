@@ -33,5 +33,12 @@ namespace Business.Concrete
                 return new ErrorDataResult<ProductDetailsDto>(Messages.ProductNotFound);
             return new SuccessDataResult<ProductDetailsDto>(result, Messages.ProductFound);
         }
+        public IDataResult<List<Product>> GetAll()
+        {
+            var result = _productDal.GetAll();
+            if (result == null)
+                return new ErrorDataResult<List<Product>>();
+            return new SuccessDataResult<List<Product>>(result, Messages.ListingDone);
+        }
     }
 }
