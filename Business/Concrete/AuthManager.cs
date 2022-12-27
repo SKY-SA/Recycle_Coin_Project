@@ -27,7 +27,10 @@ namespace Business.Concrete
         {
             byte[] passwordHash, passwordSalt;
             var userAddress = HashingHelper.CreateUserAddress(userForRegisterDto.FirstName, userForRegisterDto.LastName, userForRegisterDto.Email);
-            HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
+            bool passwordStatus = string.Equals(userForRegisterDto.Password, password, StringComparison.OrdinalIgnoreCase);
+            if (!passwordStatus)
+                return new ErrorDataResult<User>(Messages.PasswordNotMatch);
+            HashingHelper.CreatePasswordHash(userForRegisterDto.Password, out passwordHash, out passwordSalt);
            
             var user = new User
             {

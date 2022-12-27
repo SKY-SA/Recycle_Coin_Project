@@ -25,9 +25,6 @@ namespace Business.Concrete
 
         public IResult AddBalance(string userAddress, int amount)
         {
-            //var walletToUpdate = _walletService.GetByUserAddress(userAddress);
-            //walletToUpdate.Balance += amount;
-            //_walletService.Update(walletToUpdate);
             _walletService.BalanceAdd(userAddress, amount);
             return new SuccessResult();
         }

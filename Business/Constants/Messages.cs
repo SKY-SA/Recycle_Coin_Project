@@ -33,5 +33,7 @@ namespace Business.Constants
         public static string RecycleIsSuccess = "Recycle has done successfully";
 
         public static string ListingDone = "Listing has done successfully";
+
+        public static string PasswordNotMatch = "Passwords not match";
     }
 }

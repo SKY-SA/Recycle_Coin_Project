@@ -22,18 +22,14 @@ Console.WriteLine("\n------------- THE END ---------------");
 // Local Method
 static void TestUserAdd(AuthManager authManager, UserForRegisterDto userForRegister, string password)
 {
-    //var userForRegister = new UserForRegisterDto
-    //{
-    //    FirstName = "Dila",
-    //    LastName = "Yoğurt",
-    //    Email = "dila@gmail.com",
-    //    Password = "123456"
-    //};
-    var result = authManager.Register(userForRegister, "123456");
+    var result = authManager.Register(userForRegister, password);
     if (result.Success)
         Console.WriteLine(result.Message);
     else
+    { 
         Console.WriteLine(result.Message);
+        Environment.Exit(0);
+    }
 }
 
 static void TestDisplayUserBalance(UserManager userManager, string userEmail)
@@ -95,14 +91,14 @@ static void TestCase()
 
     var userForRegister = new UserForRegisterDto()
     {
-        Email = "demet@gmail.com",
-        FirstName = "Demet",
-        LastName = "Atak",
+        Email = "taha2@gmail.com",
+        FirstName = "Taha2",
+        LastName = "Sarıoğlu",
         Password = "123456"
     };
 
     Console.WriteLine("\n->TEST of user registration has starting");
-    TestUserAdd(authManager, userForRegister, "123456");
+    TestUserAdd(authManager, userForRegister, "1234567");
     Console.WriteLine("-->REGISTRATION TEST HAS DONE !!!");
 
     Thread.Sleep(2000);
