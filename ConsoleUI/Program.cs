@@ -91,14 +91,14 @@ static void TestCase()
 
     var userForRegister = new UserForRegisterDto()
     {
-        Email = "taha2@gmail.com",
-        FirstName = "Taha2",
+        Email = "samet2@gmail.com",
+        FirstName = "Samet2",
         LastName = "Sarıoğlu",
         Password = "123456"
     };
 
     Console.WriteLine("\n->TEST of user registration has starting");
-    TestUserAdd(authManager, userForRegister, "1234567");
+    TestUserAdd(authManager, userForRegister, "123456");
     Console.WriteLine("-->REGISTRATION TEST HAS DONE !!!");
 
     Thread.Sleep(2000);

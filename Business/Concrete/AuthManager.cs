@@ -42,8 +42,8 @@ namespace Business.Concrete
                 PasswordSalt = passwordSalt,
                 Status = true
             };
-            _userService.Add(user);
 
+            _userService.Add(user);
             var result = _walletService.GetByUserAddress(userAddress);
             if (result == null)
             {
