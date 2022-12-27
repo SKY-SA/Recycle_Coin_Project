@@ -11,7 +11,7 @@ namespace Core.Entities.Concrete
         
         public double GetCarbonBalance()
         {
-            _carbonBalance = Balance * 100;
+            _carbonBalance = Balance * 100000000;
             return _carbonBalance;
         }
 
