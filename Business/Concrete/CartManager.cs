@@ -35,7 +35,6 @@ namespace Business.Concrete
             if (!result.Success)
                 return new ErrorResult(result.Message);
             return new SuccessResult(Messages.RecycleIsSuccess);
-          //  _userService.AddBalance(userAddress)
         }
     }
 }
