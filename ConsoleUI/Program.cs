@@ -95,9 +95,9 @@ static void TestCase()
 
     var userForRegister = new UserForRegisterDto()
     {
-        Email = "bayrak@gmail.com",
-        FirstName = "Ayşe",
-        LastName = "Bayrak",
+        Email = "demet@gmail.com",
+        FirstName = "Demet",
+        LastName = "Atak",
         Password = "123456"
     };
 
@@ -116,7 +116,7 @@ static void TestCase()
     Console.WriteLine("-->Do Recycle Test Has DONE !!!");
 
     Thread.Sleep(2000);
-    Console.WriteLine("\n\N->After Doing Recycle, TEST of getting user's balance has starting");
+    Console.WriteLine("\n\n->After Doing Recycle, TEST of getting user's balance has starting");
     TestDisplayUserBalance(userManager, userForRegister.Email);
     Console.WriteLine("-->Display balance TEST has DONE !!!");
 
